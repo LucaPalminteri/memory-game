@@ -3,42 +3,42 @@
     "data": [
         {
             "id": 1,
-            "info": "example1",
+            "info": "example1a",
             "key": "one"
         },
         {
             "id": 2,
-            "info": "example1",
+            "info": "example1b",
             "key": "one"
         },
         {
             "id": 3,
-            "info": "example2",
+            "info": "example2a",
             "key": "two"
         },
         {
             "id": 4,
-            "info": "example2",
+            "info": "example2b",
             "key": "two"
         },
         {
             "id": 5,
-            "info": "example3",
+            "info": "example3a",
             "key": "three"
         },
         {
             "id": 6,
-            "info": "example3",
+            "info": "example3b",
             "key": "three"
         },
         {
             "id": 7,
-            "info": "example4",
+            "info": "example4a",
             "key": "four"
         },
         {
             "id": 8,
-            "info": "example4",
+            "info": "example4b",
             "key": "four"
         }
     ]

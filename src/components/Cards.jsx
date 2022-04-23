@@ -1,46 +1,75 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from './Card'
 import Data from '../data/data.json'
 
 function Cards(){
 
-    const [show,setShow] = useState([false,false,false,false,false,false,false,false])
+    const [show,setShow] = useState([])
+    const [round,setRound] = useState(0)
+    const [cards,setCards] = useState([])
 
-    function toggle(e){
-        setShow(prev=>{
+    function firstShow() {
+        const arr = []
+        for (let i = 0; i < 8; i++) {
+            arr.push(false)
+        }
+        return arr
+    }
+
+
+    useEffect(()=>{
+        setShow(firstShow())
+        setCards(createCards(8))
+    },[])
+
+
+
+    function toggle(e,index){
+        setRound(prev=>prev+1)
+        setShow(prev=>{ 
             let arr = []
             for (let i = 0; i < 8; i++) {
-                if(e.target.className == i){
+                if(index == i){
                     arr.push(!prev[i])
+                    if(e.target.innerHTML === '') {
+                        e.target.innerHTML = Data.data[i].info
+                    }
+                    else {
+                        e.target.innerHTML = ''
+                    }
                 }
                 else {
                     arr.push(prev[i])
                 }
             }
+            for (let i = 0; i < 8; i++) {
+                
+            }
             return arr;
-        })
+        });
+        if(round >= 2) setShow(firstShow())
     }
+    console.log(round);
+    if(round >= 2) setRound(0)
 
     function createCards(n) {
         const arr = []
         for (let i = 0; i < n; i++) {
             arr.push(
             <button 
-                onClick={toggle} 
+                onClick={(e)=>toggle(e,i)} 
                 key={Data.data[i].id} 
-                className={i}>{
-                    show[i] ? 
-                    Data.data[i].info : 
-                    ''}
+            >
+                {''}
             </button>
             )
         }
-        return arr;
+        return arr.sort(function(a, b){return 0.5 - Math.random()});
     }
    
     return (
         <div className="container">
-            {createCards(8)}
+            {cards}
         </div>
     )
 }
