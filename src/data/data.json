@@ -1,0 +1,45 @@
+{
+    "status": "ok",
+    "data": [
+        {
+            "id": 1,
+            "info": "example1",
+            "key": "one"
+        },
+        {
+            "id": 2,
+            "info": "example1",
+            "key": "one"
+        },
+        {
+            "id": 3,
+            "info": "example2",
+            "key": "two"
+        },
+        {
+            "id": 4,
+            "info": "example2",
+            "key": "two"
+        },
+        {
+            "id": 5,
+            "info": "example3",
+            "key": "three"
+        },
+        {
+            "id": 6,
+            "info": "example3",
+            "key": "three"
+        },
+        {
+            "id": 7,
+            "info": "example4",
+            "key": "four"
+        },
+        {
+            "id": 8,
+            "info": "example4",
+            "key": "four"
+        }
+    ]
+}

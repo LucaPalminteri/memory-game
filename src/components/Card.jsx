@@ -1,9 +1,10 @@
-function Card({item, id, handleClick}){
-    const itemClass = item.stat ? " active " + item.stat : ""
+import React from "react"
+
+
+function Card(){
 
     return (
-        <div className={"card" + itemClass} onClick={() => handleClick(id)}>
-            <img src={item.img} alt="" />
+        <div>
         </div>
     )
 }

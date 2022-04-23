@@ -1,62 +1,46 @@
 import { useState } from 'react'
 import Card from './Card'
+import Data from '../data/data.json'
 
 function Cards(){
-    const [items, setItems] = useState([
-        { id: 1, img: '/img/html.png', stat: "" },
-        { id: 1, img: '/img/html.png', stat: "" },
-        { id: 2, img: '/img/css.png', stat: "" },
-        { id: 2, img: '/img/css.png', stat: "" },
-        { id: 3, img: '/img/js.png', stat: "" },
-        { id: 3, img: '/img/js.png', stat: "" },
-        { id: 4, img: '/img/scss.png', stat: "" },
-        { id: 4, img: '/img/scss.png', stat: "" },
-        { id: 5, img: '/img/react.png', stat: "" },
-        { id: 5, img: '/img/react.png', stat: "" },
-        { id: 6, img: '/img/vue.png', stat: "" },
-        { id: 6, img: '/img/vue.png', stat: "" },
-        { id: 7, img: '/img/angular.png', stat: "" },
-        { id: 7, img: '/img/angular.png', stat: "" },
-        { id: 8, img: '/img/nodejs.png', stat: "" },
-        { id: 8, img: '/img/nodejs.png', stat: "" }
-    ].sort(() => Math.random() - 0.5))
 
-    const [prev, setPrev] = useState(-1)
+    const [show,setShow] = useState([false,false,false,false,false,false,false,false])
 
-    function check(current){
-        if(items[current].id == items[prev].id){
-            items[current].stat = "correct"
-            items[prev].stat = "correct"
-            setItems([...items])
-            setPrev(-1)
-        }else{
-            items[current].stat = "wrong"
-            items[prev].stat = "wrong"
-            setItems([...items])
-            setTimeout(() => {
-                items[current].stat = ""
-                items[prev].stat = ""
-                setItems([...items])
-                setPrev(-1)
-            }, 1000)
-        }
+    function toggle(e){
+        setShow(prev=>{
+            let arr = []
+            for (let i = 0; i < 8; i++) {
+                if(e.target.className == i){
+                    arr.push(!prev[i])
+                }
+                else {
+                    arr.push(prev[i])
+                }
+            }
+            return arr;
+        })
     }
 
-    function handleClick(id){
-        if(prev === -1){
-            items[id].stat = "active"
-            setItems([...items])
-            setPrev(id)
-        }else{
-            check(id)
+    function createCards(n) {
+        const arr = []
+        for (let i = 0; i < n; i++) {
+            arr.push(
+            <button 
+                onClick={toggle} 
+                key={Data.data[i].id} 
+                className={i}>{
+                    show[i] ? 
+                    Data.data[i].info : 
+                    ''}
+            </button>
+            )
         }
+        return arr;
     }
-
+   
     return (
         <div className="container">
-            { items.map((item, index) => (
-                <Card key={index} item={item} id={index} handleClick={handleClick} />
-            )) }
+            {createCards(8)}
         </div>
     )
 }
